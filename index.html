@@ -4,12 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Deneton | Inspection management for construction and commissioning</title>
-<meta name="description" content="Deneton tracks every asset through every inspection stage, from invitation to witnessed record to closed snag, for commissioning and QA/QC teams.">
+<meta name="description" content="Deneton is inspection management software for construction and commissioning teams. Every asset, every inspection stage and every snag, from the first invitation to the final close-out.">
 <meta property="og:title" content="Deneton">
 <meta property="og:description" content="Inspection management for construction and commissioning teams.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://deneton.com/">
+<meta property="og:site_name" content="Deneton">
 <meta name="theme-color" content="#F3F4F1">
+<link rel="canonical" href="https://deneton.com/">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20160%20160%22%3E%3Crect%20width%3D%22160%22%20height%3D%22160%22%20rx%3D%2236%22%20fill%3D%22%233355FF%22%2F%3E%3Cg%20transform%3D%22translate%28-504.9%20131.27%29%20scale%280.2279%29%22%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2274%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M2476%20-364A193%20180%200%201%200%202713%20-322M2503%20-218L2571%20-155L2609%20-425%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,8 +22,10 @@
   --paper:#F3F4F1;
   --panel:#E6E8E3;
   --line:#D5D8D1;
+  --soft:#ECEEE9;
   --muted:#575C66;
   --accent:#3355FF;
+  --accent-dark:#2443E0;
   --white:#FFFFFF;
   --pass:#1F8A5B;
   --fail:#D43F2E;
@@ -30,111 +34,205 @@
   --body:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
 a{color:inherit}
 a:focus-visible,.btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
-.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:32px;padding-right:32px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-
-.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:28px;padding-bottom:28px}
-.logo{display:block;width:164px;height:auto}
-.toplink{font-weight:500;font-size:16px;text-decoration:none;border-bottom:2px solid var(--accent);padding-bottom:2px}
-.toplink:hover{color:var(--accent)}
-
-.hero{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);gap:64px;align-items:center;padding-top:56px;padding-bottom:104px}
 h1,h2,h3{font-family:var(--display);font-weight:700;margin:0}
-h1{font-size:clamp(42px,5.6vw,74px);line-height:.98;letter-spacing:-.022em}
-.lede{font-size:20px;line-height:1.5;color:var(--muted);max-width:33em;margin:28px 0 36px}
-.btn{display:inline-block;background:var(--accent);color:var(--white);font-weight:600;font-size:17px;text-decoration:none;padding:15px 24px;border-radius:10px}
-.btn:hover{background:#2443E0}
+h1{font-size:clamp(42px,5.4vw,72px);line-height:.98;letter-spacing:-.022em}
+h2{font-size:clamp(30px,3.6vw,46px);line-height:1.04;letter-spacing:-.018em}
+h3{font-size:24px;line-height:1.12;letter-spacing:-.01em;margin-bottom:10px}
+.sec{padding-top:112px;padding-bottom:112px}
+.intro{font-size:19px;color:var(--muted);max-width:36em;margin:20px 0 0}
+.btn{display:inline-block;background:var(--accent);color:var(--white);font-weight:600;font-size:16.5px;text-decoration:none;padding:14px 22px;border-radius:10px;white-space:nowrap}
+.btn:hover{background:var(--accent-dark)}
+.textlink{font-weight:500;text-decoration:none;border-bottom:2px solid var(--accent);padding-bottom:2px}
+.textlink:hover{color:var(--accent)}
 
-.board{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:22px 22px 20px}
-.boardhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
-.boardhead strong{font-weight:600;font-size:16px}
-.boardhead span{font-size:14px;color:var(--muted)}
+/* header */
+.top{display:flex;align-items:center;gap:40px;padding-top:24px;padding-bottom:24px}
+.logo{display:block;width:150px;height:auto}
+.nav{display:flex;gap:30px;margin-left:auto;font-size:15.5px;font-weight:500}
+.nav a{text-decoration:none;color:#3A3E46}
+.nav a:hover{color:var(--accent)}
+.top .btn{padding:10px 16px;font-size:15px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:56px;align-items:center;padding-top:48px;padding-bottom:72px}
+.lede{font-size:20px;line-height:1.5;color:var(--muted);max-width:31em;margin:26px 0 34px}
+.cta{display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+
+/* product window */
+.win{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 1px 0 rgba(31,31,31,.04),0 24px 48px -28px rgba(31,31,31,.28)}
+.appbar{display:flex;align-items:center;gap:14px;background:var(--ink);color:var(--white);padding:11px 16px;font-size:13.5px}
+.appbar svg{width:22px;height:22px;flex:none}
+.appbar .proj{font-weight:500}
+.appbar .proj span{color:#9EA3AB;font-weight:400;margin-left:6px}
+.tabs{display:flex;gap:4px;padding:0 12px;border-bottom:1px solid var(--soft);font-size:13.5px;font-weight:500;color:var(--muted);overflow-x:auto}
+.tabs span{padding:11px 10px 10px;border-bottom:2px solid transparent;white-space:nowrap}
+.tabs .on{color:var(--ink);border-bottom-color:var(--accent)}
+.winbody{padding:16px 18px 16px}
+.tools{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:12.5px}
+.chip{border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:#3A3E46;background:var(--paper)}
+.tools .count{margin-left:auto;color:var(--muted)}
 .scroll{overflow-x:auto}
 table{border-collapse:collapse;width:100%;min-width:430px}
 th,td{padding:7px 4px;text-align:center}
-thead th{font-weight:500;font-size:13px;color:var(--muted);padding-bottom:10px}
-tbody th{text-align:left;font-weight:500;font-size:14.5px;white-space:nowrap;padding-right:12px}
-tbody tr{border-top:1px solid #ECEEE9}
-.cell{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;vertical-align:middle}
-.cell svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+thead th{font-weight:500;font-size:12.5px;color:var(--muted);padding-bottom:9px}
+tbody th{text-align:left;font-weight:500;font-size:14px;white-space:nowrap;padding-right:12px}
+tbody tr{border-top:1px solid var(--soft)}
+.cell{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:7px;vertical-align:middle}
+.cell svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .pass{background:var(--pass);color:var(--white)}
 .fail{background:var(--fail);color:var(--white)}
 .sched{background:#FBF1DC;color:var(--sched);box-shadow:inset 0 0 0 1.5px #E4C27A}
 .na{color:#9A9F97}
 .open{box-shadow:inset 0 0 0 1.5px #DADDD6}
-.key{display:flex;flex-wrap:wrap;gap:8px 18px;margin:14px 0 0;padding:0;list-style:none;font-size:13px;color:var(--muted)}
-.key li{display:flex;align-items:center;gap:7px}
-.key .cell{width:18px;height:18px;border-radius:5px}
-.key .cell svg{width:10px;height:10px;stroke-width:3}
-.snag{margin-top:18px;border-left:4px solid var(--fail);background:#FBF0EE;border-radius:0 10px 10px 0;padding:12px 16px;font-size:14.5px;line-height:1.45}
-.snag b{font-weight:600}
-.snag p{margin:0}
-.snag p + p{color:var(--muted);margin-top:3px}
-.note{font-size:13.5px;color:var(--muted);margin:12px 4px 0}
-
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;margin:12px 0 0;padding:0;list-style:none;font-size:12.5px;color:var(--muted)}
+.key li{display:flex;align-items:center;gap:6px}
+.key .cell{width:16px;height:16px;border-radius:4px}
+.key .cell svg{width:9px;height:9px;stroke-width:3}
+.note{font-size:13px;color:var(--muted);margin:12px 4px 0}
 @media (prefers-reduced-motion:no-preference){
   tbody .cell{opacity:0;transform:scale(.6);animation:land .32s cubic-bezier(.2,.8,.3,1.2) forwards;animation-delay:calc(var(--r)*110ms + var(--c)*45ms + 250ms)}
-  .snag{opacity:0;animation:fade .5s ease forwards;animation-delay:1.25s}
   @keyframes land{to{opacity:1;transform:scale(1)}}
-  @keyframes fade{to{opacity:1}}
 }
 
-.flow{padding-top:16px;padding-bottom:112px}
-h2{font-size:clamp(30px,3.6vw,46px);line-height:1.04;letter-spacing:-.018em}
-.flow h2{max-width:15em}
+/* roles */
+.roles{border-top:1px solid var(--line)}
+.rolegrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin-top:52px}
+.rolegrid p{margin:0;color:var(--muted);font-size:16.5px}
+.rolegrid div{border-top:3px solid var(--ink);padding-top:18px}
+
+/* loop */
+.loop{background:var(--panel)}
 .steps{list-style:none;margin:52px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px;counter-reset:step}
 .steps li{counter-increment:step;border-top:3px solid var(--ink);padding-top:18px}
 .steps li::before{content:counter(step);font-family:var(--display);font-weight:700;font-size:22px;color:var(--accent);display:block;margin-bottom:6px}
-h3{font-size:25px;line-height:1.1;letter-spacing:-.01em;margin-bottom:10px}
-.steps p,.points p{margin:0;font-size:16.5px}
-.steps p{color:var(--muted)}
+.steps p{margin:0;font-size:16.5px;color:#454A53}
 
+/* feature rows */
+.feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px;align-items:center;padding-top:56px;padding-bottom:56px}
+.feature + .feature{border-top:1px solid var(--line)}
+.feature:first-child{padding-top:0}
+.feature:last-child{padding-bottom:0}
+.feature.flip .copy{order:2}
+.copy h2{margin-bottom:18px}
+.copy p{color:var(--muted);margin:0 0 14px;max-width:32em}
+.copy ul{margin:18px 0 0;padding:0;list-style:none;font-size:16px}
+.copy li{padding:9px 0 9px 28px;border-top:1px solid var(--line);position:relative}
+.copy li::before{content:"";position:absolute;left:4px;top:17px;width:10px;height:6px;border-left:2.5px solid var(--accent);border-bottom:2.5px solid var(--accent);transform:rotate(-45deg)}
+.mini{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px 22px;font-size:14.5px;box-shadow:0 18px 40px -30px rgba(31,31,31,.35)}
+.minihead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+.minihead b{font-weight:600;font-size:15.5px;display:block}
+.minihead small{color:var(--muted);font-size:13px}
+.pill{font-size:12.5px;font-weight:600;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.pill.red{background:#FBE7E4;color:#A52B1D}
+.pill.amber{background:#FBF1DC;color:#7E4F06}
+.pill.blue{background:#E6EBFF;color:#1F3BCC}
+.fields{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0}
+.fields dt{color:var(--muted)}
+.fields dd{margin:0;font-weight:500}
+.thumbs{display:flex;gap:6px}
+.thumbs i{width:34px;height:26px;border-radius:5px;background:linear-gradient(135deg,#D9DCD5,#BFC3BA)}
+.lockrow{display:flex;align-items:center;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--soft);color:#3A3E46}
+.lockrow svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.supersede{margin-top:10px;font-size:13px;color:var(--muted)}
+.hist{list-style:none;margin:16px 0 0;padding:0 0 0 18px;border-left:2px solid var(--soft)}
+.hist li{position:relative;padding:0 0 12px 4px}
+.hist li:last-child{padding-bottom:0}
+.hist li::before{content:"";position:absolute;left:-25px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--white);border:2px solid #B8BCB4}
+.hist li.now::before{border-color:var(--accent);background:var(--accent)}
+.hist span{color:var(--muted);font-size:13px;margin-left:6px}
+.tree{list-style:none;margin:0;padding:0}
+.tree > li{padding:9px 0;border-top:1px solid var(--soft)}
+.tree > li:first-child{border-top:0}
+.tree ul{list-style:none;margin:7px 0 0 30px;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px;color:#3A3E46}
+.tree label{display:flex;align-items:center;gap:9px}
+.box{width:17px;height:17px;border-radius:4px;border:1.5px solid #9EA3AB;display:inline-grid;place-items:center;flex:none;background:var(--white)}
+.box.y{background:var(--accent);border-color:var(--accent)}
+.box.y::after{content:"";width:8px;height:4px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:translateY(-1px) rotate(-45deg)}
+.box.p{border-color:var(--accent)}
+.box.p::after{content:"";width:8px;height:2px;background:var(--accent)}
+.tree ul .box{width:14px;height:14px}
+.tree ul .box.y::after{width:6px;height:3px}
+.tree ul span{display:flex;align-items:center;gap:6px}
+
+/* everything else */
+.more{border-top:1px solid var(--line)}
+.moregrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 48px;margin-top:48px}
+.moregrid h3{font-size:21px}
+.moregrid p{margin:0;color:var(--muted);font-size:16px}
+
+/* next */
+.next{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.nextgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin-top:48px}
+.nextgrid div{border-left:3px solid var(--accent);padding-left:20px}
+.nextgrid p{margin:0;color:var(--muted);font-size:16px}
+
+/* about */
 .dark{background:var(--ink);color:var(--white)}
-.dark .wrap{padding-top:104px;padding-bottom:104px}
-.points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:52px 72px;margin-top:56px}
-.points div{border-top:1px solid #4A4C50;padding-top:22px}
-.points p{color:#C3C6CC;max-width:30em}
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:72px;align-items:start}
+.about p{color:#C3C6CC;margin:0 0 16px;max-width:32em}
+.name{border-top:1px solid #4A4C50;padding-top:26px}
+.name .word{margin-bottom:22px}
+.name .word .logo{width:210px}
+.name dl{display:grid;grid-template-columns:auto 1fr;gap:10px 18px;margin:0 0 18px}
+.name dt{font-family:var(--display);font-size:22px;line-height:1.2}
+.name dd{margin:0;color:#C3C6CC;padding-top:2px}
 
-.close{padding-top:112px;padding-bottom:112px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:end}
+/* closing */
+.close{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:end}
 .close p{font-size:19px;color:var(--muted);max-width:31em;margin:20px 0 0}
 
-footer{border-top:1px solid var(--line)}
-footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:26px;padding-bottom:30px;font-size:14.5px;color:var(--muted)}
-footer .who{display:flex;align-items:center;gap:10px}
-footer svg{width:26px;height:26px;display:block}
-footer a{text-decoration:none}
-footer a:hover{color:var(--accent)}
+/* footer */
+footer{background:var(--white);border-top:1px solid var(--line)}
+.foot{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(2,minmax(0,1fr));gap:40px;padding-top:56px;padding-bottom:40px;font-size:15px}
+.foot .logo{width:128px;margin-bottom:14px}
+.foot p{margin:0;color:var(--muted);max-width:22em}
+.foot h4{font-family:var(--body);font-size:14px;font-weight:600;margin:0 0 12px}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot li{margin-bottom:8px}
+.foot a{text-decoration:none;color:var(--muted)}
+.foot a:hover{color:var(--accent)}
+.legal{border-top:1px solid var(--soft);padding-top:20px;padding-bottom:28px;font-size:14px;color:var(--muted)}
 
-@media (max-width:980px){
-  .hero{grid-template-columns:minmax(0,1fr);gap:48px;padding-top:32px;padding-bottom:80px}
+@media (max-width:1020px){
+  .nav{display:none}
+  .top .btn{margin-left:auto}
+  .hero{grid-template-columns:minmax(0,1fr);gap:48px;padding-top:28px;padding-bottom:80px}
   .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .feature,.about{grid-template-columns:minmax(0,1fr);gap:40px}
+  .feature.flip .copy{order:0}
+  .moregrid,.nextgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .close{grid-template-columns:minmax(0,1fr);align-items:start}
 }
 @media (max-width:640px){
   body{font-size:16px}
   .wrap{padding-left:16px;padding-right:16px}
-  .hero{padding-top:20px;padding-bottom:64px}
-  .top{padding-top:20px;padding-bottom:20px}
-  .logo{width:132px}
-  .toplink{font-size:15px}
+  .sec{padding-top:72px;padding-bottom:72px}
+  .top{padding-top:16px;padding-bottom:16px;gap:16px}
+  .logo{width:120px}
+  .top .btn{padding:9px 13px;font-size:14px}
+  .hero{padding-top:16px;padding-bottom:64px}
   .lede{font-size:18px;margin:22px 0 28px}
-  .board{padding:16px 14px}
+  .winbody{padding:14px 12px}
   table{min-width:0}
   thead th{vertical-align:bottom;padding-bottom:8px}
   .st{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}
-  tbody th{font-size:13.5px;padding-right:6px}
+  tbody th{font-size:13px;padding-right:6px}
   th,td{padding:6px 2px}
-  .cell{width:28px;height:28px}
-  .flow{padding-bottom:80px}
-  .steps{grid-template-columns:minmax(0,1fr);gap:28px;margin-top:36px}
-  .dark .wrap{padding-top:72px;padding-bottom:72px}
-  .points{grid-template-columns:minmax(0,1fr);gap:36px;margin-top:40px}
-  .close{padding-top:80px;padding-bottom:80px}
-  footer .wrap{flex-direction:column;align-items:flex-start}
+  .cell{width:26px;height:26px}
+  .tools .chip:nth-child(2){display:none}
+  .rolegrid,.steps,.moregrid,.nextgrid{grid-template-columns:minmax(0,1fr);gap:28px;margin-top:36px}
+  .feature{padding-top:40px;padding-bottom:40px}
+  .mini{padding:16px}
+  .name .word .logo{width:170px}
+  .foot{grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding-top:40px}
+  .foot > div:first-child{grid-column:1 / -1}
 }
 </style>
 </head>
@@ -148,82 +246,199 @@ footer a:hover{color:var(--accent)}
 </svg>
 
 <header class="wrap top">
-  <a href="/" aria-label="Deneton home">
-    <svg class="logo" viewBox="-20 -708 3393 740" role="img" aria-label="Deneton">
-      <path fill="#1F1F1F" d="M218 12L218 12Q159 12 115 -17Q71 -46 46 -96Q22 -145 22 -205L22 -205Q22 -265 46 -314Q71 -363 115 -393Q159 -422 218 -422L218 -422Q258 -422 288 -410Q319 -398 338 -381Q357 -364 361 -350L361 -350L361 -688L513 -688L513 0L362 0L362 -66Q353 -48 331 -30Q310 -11 281 0Q252 12 218 12M265 -107L265 -107Q292 -107 314 -120Q336 -132 348 -155Q361 -177 361 -205L361 -205Q361 -233 348 -255Q336 -277 314 -290Q292 -303 265 -303L265 -303Q238 -303 217 -290Q196 -277 183 -255Q171 -233 171 -205L171 -205Q171 -177 183 -155Q196 -132 217 -120Q238 -107 265 -107M989 -173L692 -173Q693 -151 706 -134Q718 -117 740 -107Q763 -97 793 -97L793 -97Q822 -97 845 -103Q869 -109 886 -118Q903 -127 913 -137L913 -137L972 -43Q959 -29 936 -17Q914 -4 877 4Q840 12 783 12L783 12Q715 12 662 -13Q609 -39 579 -88Q548 -138 548 -209L548 -209Q548 -269 574 -318Q601 -366 651 -394Q701 -422 771 -422L771 -422Q838 -422 887 -398Q937 -373 963 -325Q990 -277 990 -205L990 -205Q990 -201 990 -189Q990 -177 989 -173L989 -173M695 -252L847 -252Q847 -268 839 -284Q831 -300 815 -310Q799 -320 774 -320L774 -320Q749 -320 731 -311Q714 -301 705 -285Q696 -270 695 -252L695 -252M1321 -422L1321 -422Q1364 -422 1405 -405Q1446 -387 1473 -350Q1499 -312 1499 -250L1499 -250L1499 0L1347 0L1347 -225Q1347 -269 1326 -292Q1305 -314 1271 -314L1271 -314Q1248 -314 1228 -302Q1209 -290 1196 -269Q1184 -248 1184 -220L1184 -220L1184 0L1032 0L1032 -410L1184 -410L1184 -350Q1190 -366 1209 -383Q1229 -400 1258 -411Q1287 -422 1321 -422M1976 -173L1679 -173Q1680 -151 1693 -134Q1705 -117 1727 -107Q1750 -97 1780 -97L1780 -97Q1809 -97 1832 -103Q1856 -109 1873 -118Q1890 -127 1900 -137L1900 -137L1959 -43Q1946 -29 1923 -17Q1901 -4 1864 4Q1827 12 1770 12L1770 12Q1702 12 1649 -13Q1596 -39 1566 -88Q1535 -138 1535 -209L1535 -209Q1535 -269 1561 -318Q1588 -366 1638 -394Q1688 -422 1758 -422L1758 -422Q1825 -422 1874 -398Q1924 -373 1950 -325Q1977 -277 1977 -205L1977 -205Q1977 -201 1977 -189Q1977 -177 1976 -173L1976 -173M1682 -252L1834 -252Q1834 -268 1826 -284Q1818 -300 1802 -310Q1786 -320 1761 -320L1761 -320Q1736 -320 1718 -311Q1701 -301 1692 -285Q1683 -270 1682 -252L1682 -252M1991 -285L1991 -410L2061 -410L2061 -579L2211 -579L2211 -410L2303 -410L2303 -285L2211 -285L2211 -171Q2211 -145 2219 -130Q2226 -114 2246 -114L2246 -114Q2260 -114 2269 -120Q2279 -126 2281 -128L2281 -128L2333 -20Q2329 -17 2311 -9Q2293 -1 2265 6Q2237 12 2202 12L2202 12Q2141 12 2101 -23Q2061 -57 2061 -130L2061 -130L2061 -285L1991 -285"/>
-      <path fill="#3355FF" d="M3128 -422L3128 -422Q3171 -422 3212 -405Q3253 -387 3280 -350Q3306 -312 3306 -250L3306 -250L3306 0L3154 0L3154 -225Q3154 -269 3133 -292Q3112 -314 3078 -314L3078 -314Q3055 -314 3035 -302Q3016 -290 3003 -269Q2991 -248 2991 -220L2991 -220L2991 0L2839 0L2839 -410L2991 -410L2991 -350Q2997 -366 3016 -383Q3036 -400 3065 -411Q3094 -422 3128 -422"/>
-      <path fill="none" stroke="#3355FF" stroke-width="74" stroke-linecap="round" stroke-linejoin="round" d="M2476 -364A193 180 0 1 0 2713 -322M2503 -218L2571 -155L2609 -425"/>
-    </svg>
-  </a>
-  <a class="toplink" href="mailto:hello@deneton.com?subject=Deneton%20early%20access">Ask for early access</a>
+  <a href="#top" aria-label="Deneton home"><svg class="logo" viewBox="-20 -708 3393 740" role="img" aria-label="Deneton"><path fill="#1F1F1F" d="M218 12L218 12Q159 12 115 -17Q71 -46 46 -96Q22 -145 22 -205L22 -205Q22 -265 46 -314Q71 -363 115 -393Q159 -422 218 -422L218 -422Q258 -422 288 -410Q319 -398 338 -381Q357 -364 361 -350L361 -350L361 -688L513 -688L513 0L362 0L362 -66Q353 -48 331 -30Q310 -11 281 0Q252 12 218 12M265 -107L265 -107Q292 -107 314 -120Q336 -132 348 -155Q361 -177 361 -205L361 -205Q361 -233 348 -255Q336 -277 314 -290Q292 -303 265 -303L265 -303Q238 -303 217 -290Q196 -277 183 -255Q171 -233 171 -205L171 -205Q171 -177 183 -155Q196 -132 217 -120Q238 -107 265 -107M989 -173L692 -173Q693 -151 706 -134Q718 -117 740 -107Q763 -97 793 -97L793 -97Q822 -97 845 -103Q869 -109 886 -118Q903 -127 913 -137L913 -137L972 -43Q959 -29 936 -17Q914 -4 877 4Q840 12 783 12L783 12Q715 12 662 -13Q609 -39 579 -88Q548 -138 548 -209L548 -209Q548 -269 574 -318Q601 -366 651 -394Q701 -422 771 -422L771 -422Q838 -422 887 -398Q937 -373 963 -325Q990 -277 990 -205L990 -205Q990 -201 990 -189Q990 -177 989 -173L989 -173M695 -252L847 -252Q847 -268 839 -284Q831 -300 815 -310Q799 -320 774 -320L774 -320Q749 -320 731 -311Q714 -301 705 -285Q696 -270 695 -252L695 -252M1321 -422L1321 -422Q1364 -422 1405 -405Q1446 -387 1473 -350Q1499 -312 1499 -250L1499 -250L1499 0L1347 0L1347 -225Q1347 -269 1326 -292Q1305 -314 1271 -314L1271 -314Q1248 -314 1228 -302Q1209 -290 1196 -269Q1184 -248 1184 -220L1184 -220L1184 0L1032 0L1032 -410L1184 -410L1184 -350Q1190 -366 1209 -383Q1229 -400 1258 -411Q1287 -422 1321 -422M1976 -173L1679 -173Q1680 -151 1693 -134Q1705 -117 1727 -107Q1750 -97 1780 -97L1780 -97Q1809 -97 1832 -103Q1856 -109 1873 -118Q1890 -127 1900 -137L1900 -137L1959 -43Q1946 -29 1923 -17Q1901 -4 1864 4Q1827 12 1770 12L1770 12Q1702 12 1649 -13Q1596 -39 1566 -88Q1535 -138 1535 -209L1535 -209Q1535 -269 1561 -318Q1588 -366 1638 -394Q1688 -422 1758 -422L1758 -422Q1825 -422 1874 -398Q1924 -373 1950 -325Q1977 -277 1977 -205L1977 -205Q1977 -201 1977 -189Q1977 -177 1976 -173L1976 -173M1682 -252L1834 -252Q1834 -268 1826 -284Q1818 -300 1802 -310Q1786 -320 1761 -320L1761 -320Q1736 -320 1718 -311Q1701 -301 1692 -285Q1683 -270 1682 -252L1682 -252M1991 -285L1991 -410L2061 -410L2061 -579L2211 -579L2211 -410L2303 -410L2303 -285L2211 -285L2211 -171Q2211 -145 2219 -130Q2226 -114 2246 -114L2246 -114Q2260 -114 2269 -120Q2279 -126 2281 -128L2281 -128L2333 -20Q2329 -17 2311 -9Q2293 -1 2265 6Q2237 12 2202 12L2202 12Q2141 12 2101 -23Q2061 -57 2061 -130L2061 -130L2061 -285L1991 -285"/><path fill="#3355FF" d="M3128 -422L3128 -422Q3171 -422 3212 -405Q3253 -387 3280 -350Q3306 -312 3306 -250L3306 -250L3306 0L3154 0L3154 -225Q3154 -269 3133 -292Q3112 -314 3078 -314L3078 -314Q3055 -314 3035 -302Q3016 -290 3003 -269Q2991 -248 2991 -220L2991 -220L2991 0L2839 0L2839 -410L2991 -410L2991 -350Q2997 -366 3016 -383Q3036 -400 3065 -411Q3094 -422 3128 -422"/><path fill="none" stroke="#3355FF" stroke-width="74" stroke-linecap="round" stroke-linejoin="round" d="M2476 -364A193 180 0 1 0 2713 -322M2503 -218L2571 -155L2609 -425"/></svg></a>
+  <nav class="nav" aria-label="Main">
+    <a href="#product">Product</a>
+    <a href="#how">How it works</a>
+    <a href="#next">What's next</a>
+    <a href="#about">Company</a>
+  </nav>
+  <a class="btn" href="mailto:hello@deneton.com?subject=Deneton%20early%20access">Ask for early access</a>
 </header>
 
-<main>
+<main id="top">
   <section class="wrap hero">
     <div>
       <h1>Know what's been inspected, what failed and what's next.</h1>
-      <p class="lede">Deneton is inspection management for construction and commissioning teams. It follows every asset through every stage, from the invitation to the witnessed record to the closed snag.</p>
-      <a class="btn" href="mailto:hello@deneton.com?subject=Deneton%20early%20access">Ask for early access</a>
+      <p class="lede">Deneton is inspection management software for construction and commissioning. It follows every asset through every inspection stage, from the first invitation to the last closed snag.</p>
+      <div class="cta">
+        <a class="btn" href="mailto:hello@deneton.com?subject=Deneton%20early%20access">Ask for early access</a>
+        <a class="textlink" href="#how">See how it works</a>
+      </div>
     </div>
 
     <div>
-      <div class="board">
-        <div class="boardhead"><strong>Inspection tracker</strong><span>Example project</span></div>
-        <div class="scroll">
-          <table>
-            <caption class="sr">Example tracker: six assets against five inspection stages</caption>
-            <thead>
-              <tr><th scope="col"><span class="sr">Asset</span></th><th scope="col"><span class="st">Factory</span></th><th scope="col"><span class="st">Delivery</span></th><th scope="col"><span class="st">Installation</span></th><th scope="col"><span class="st">Pre-functional</span></th><th scope="col"><span class="st">Functional</span></th></tr>
-            </thead>
-            <tbody>
-              <tr style="--r:0"><th scope="row">UPS-A-01</th><td><span class="cell pass" style="--c:0"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Factory: Passed</span></span></td><td><span class="cell pass" style="--c:1"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Delivery: Passed</span></span></td><td><span class="cell pass" style="--c:2"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Installation: Passed</span></span></td><td><span class="cell pass" style="--c:3"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Pre-functional: Passed</span></span></td><td><span class="cell sched" style="--c:4"><svg aria-hidden="true"><use href="#i-sched"/></svg><span class="sr">Functional: Invited</span></span></td></tr>
-              <tr style="--r:1"><th scope="row">UPS-B-01</th><td><span class="cell pass" style="--c:0"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Factory: Passed</span></span></td><td><span class="cell pass" style="--c:1"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Delivery: Passed</span></span></td><td><span class="cell pass" style="--c:2"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Installation: Passed</span></span></td><td><span class="cell pass" style="--c:3"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Pre-functional: Passed</span></span></td><td><span class="cell fail" style="--c:4"><svg aria-hidden="true"><use href="#i-fail"/></svg><span class="sr">Functional: Failed</span></span></td></tr>
-              <tr style="--r:2"><th scope="row">GEN-03</th><td><span class="cell pass" style="--c:0"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Factory: Passed</span></span></td><td><span class="cell pass" style="--c:1"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Delivery: Passed</span></span></td><td><span class="cell pass" style="--c:2"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Installation: Passed</span></span></td><td><span class="cell sched" style="--c:3"><svg aria-hidden="true"><use href="#i-sched"/></svg><span class="sr">Pre-functional: Invited</span></span></td><td><span class="cell open" style="--c:4"><span class="sr">Functional: Not started</span></span></td></tr>
-              <tr style="--r:3"><th scope="row">CRAH-2-14</th><td><span class="cell pass" style="--c:0"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Factory: Passed</span></span></td><td><span class="cell pass" style="--c:1"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Delivery: Passed</span></span></td><td><span class="cell pass" style="--c:2"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Installation: Passed</span></span></td><td><span class="cell pass" style="--c:3"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Pre-functional: Passed</span></span></td><td><span class="cell pass" style="--c:4"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Functional: Passed</span></span></td></tr>
-              <tr style="--r:4"><th scope="row">PDU-1B-07</th><td><span class="cell pass" style="--c:0"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Factory: Passed</span></span></td><td><span class="cell pass" style="--c:1"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Delivery: Passed</span></span></td><td><span class="cell sched" style="--c:2"><svg aria-hidden="true"><use href="#i-sched"/></svg><span class="sr">Installation: Invited</span></span></td><td><span class="cell open" style="--c:3"><span class="sr">Pre-functional: Not started</span></span></td><td><span class="cell open" style="--c:4"><span class="sr">Functional: Not started</span></span></td></tr>
-              <tr style="--r:5"><th scope="row">CH-02</th><td><span class="cell pass" style="--c:0"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Factory: Passed</span></span></td><td><span class="cell na" style="--c:1"><svg aria-hidden="true"><use href="#i-na"/></svg><span class="sr">Delivery: Not applicable</span></span></td><td><span class="cell pass" style="--c:2"><svg aria-hidden="true"><use href="#i-pass"/></svg><span class="sr">Installation: Passed</span></span></td><td><span class="cell sched" style="--c:3"><svg aria-hidden="true"><use href="#i-sched"/></svg><span class="sr">Pre-functional: Invited</span></span></td><td><span class="cell open" style="--c:4"><span class="sr">Functional: Not started</span></span></td></tr>
-            </tbody>
-          </table>
+      <div class="win" role="img" aria-label="Deneton inspection tracker showing six assets against five inspection stages, with sample data">
+        <div class="appbar">
+          <svg viewBox="0 0 160 160" aria-hidden="true"><rect width="160" height="160" rx="36" fill="#3355FF"/><g transform="translate(-504.9 131.27) scale(0.2279)"><path fill="none" stroke="#FFFFFF" stroke-width="74" stroke-linecap="round" stroke-linejoin="round" d="M2476 -364A193 180 0 1 0 2713 -322M2503 -218L2571 -155L2609 -425"/></g></svg>
+          <div class="proj">Example project<span>Electrical, Building A</span></div>
         </div>
-        <ul class="key">
-          <li><span class="cell pass"><svg aria-hidden="true"><use href="#i-pass"/></svg></span>Passed</li>
-          <li><span class="cell fail"><svg aria-hidden="true"><use href="#i-fail"/></svg></span>Failed</li>
-          <li><span class="cell sched"><svg aria-hidden="true"><use href="#i-sched"/></svg></span>Invited</li>
-          <li><span class="cell na"><svg aria-hidden="true"><use href="#i-na"/></svg></span>Not applicable</li>
-          <li><span class="cell open"></span>Not started</li>
-        </ul>
-        <div class="snag">
-          <p><b>UPS-B-01, functional test failed.</b> Breaker settings differ from the approved protection study.</p>
-          <p>Snag assigned to the electrical contractor. Open for 3 days.</p>
+        <div class="tabs" aria-hidden="true"><span class="on">Tracker</span><span>Inspections</span><span>Snags</span><span>Invitations</span><span>Assets</span></div>
+        <div class="winbody">
+          <div class="tools" aria-hidden="true"><span class="chip">Building A</span><span class="chip">Electrical</span><span class="count">6 assets</span></div>
+          <div class="scroll">
+            <table aria-hidden="true">
+              <thead>
+                <tr><th scope="col"></th><th scope="col"><span class="st">Factory</span></th><th scope="col"><span class="st">Delivery</span></th><th scope="col"><span class="st">Installation</span></th><th scope="col"><span class="st">Pre-functional</span></th><th scope="col"><span class="st">Functional</span></th></tr>
+              </thead>
+              <tbody>
+                <tr style="--r:0"><th scope="row">UPS-A-01</th><td><span class="cell pass" style="--c:0"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell pass" style="--c:1"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell pass" style="--c:2"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell pass" style="--c:3"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell sched" style="--c:4"><svg><use href="#i-sched"/></svg></span></td></tr>
+                <tr style="--r:1"><th scope="row">UPS-B-01</th><td><span class="cell pass" style="--c:0"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell pass" style="--c:1"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell pass" style="--c:2"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell pass" style="--c:3"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell fail" style="--c:4"><svg><use href="#i-fail"/></svg></span></td></tr>
+                <tr style="--r:2"><th scope="row">GEN-03</th><td><span class="cell pass" style="--c:0"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell pass" style="--c:1"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell pass" style="--c:2"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell sched" style="--c:3"><svg><use href="#i-sched"/></svg></span></td><td><span class="cell open" style="--c:4"></span></td></tr>
+                <tr style="--r:3"><th scope="row">CRAH-2-14</th><td><span class="cell pass" style="--c:0"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell pass" style="--c:1"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell pass" style="--c:2"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell pass" style="--c:3"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell pass" style="--c:4"><svg><use href="#i-pass"/></svg></span></td></tr>
+                <tr style="--r:4"><th scope="row">PDU-1B-07</th><td><span class="cell pass" style="--c:0"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell pass" style="--c:1"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell sched" style="--c:2"><svg><use href="#i-sched"/></svg></span></td><td><span class="cell open" style="--c:3"></span></td><td><span class="cell open" style="--c:4"></span></td></tr>
+                <tr style="--r:5"><th scope="row">CH-02</th><td><span class="cell pass" style="--c:0"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell na" style="--c:1"><svg><use href="#i-na"/></svg></span></td><td><span class="cell pass" style="--c:2"><svg><use href="#i-pass"/></svg></span></td><td><span class="cell sched" style="--c:3"><svg><use href="#i-sched"/></svg></span></td><td><span class="cell open" style="--c:4"></span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <ul class="key" aria-hidden="true">
+            <li><span class="cell pass"><svg><use href="#i-pass"/></svg></span>Passed</li>
+            <li><span class="cell fail"><svg><use href="#i-fail"/></svg></span>Failed</li>
+            <li><span class="cell sched"><svg><use href="#i-sched"/></svg></span>Invited</li>
+            <li><span class="cell na"><svg><use href="#i-na"/></svg></span>Not applicable</li>
+            <li><span class="cell open"></span>Not started</li>
+          </ul>
         </div>
       </div>
       <p class="note">Illustration with sample data. Stages, fields and outcomes are set per project.</p>
     </div>
   </section>
 
-  <section class="wrap flow">
-    <h2>One loop, from the invitation to the close-out.</h2>
-    <ol class="steps">
-      <li><h3>Invite</h3><p>Send an invitation when an item is ready for inspection. The people who need to attend are notified.</p></li>
-      <li><h3>Witness</h3><p>Record the outcome, the progress and the photos on the spot. Unplanned inspections can be recorded without an invitation.</p></li>
-      <li><h3>Track</h3><p>The tracker shows every asset against every stage, so open, failed and upcoming work stays in view.</p></li>
-      <li><h3>Close out</h3><p>Raise snags against what failed, assign them to a person or a company, and follow them until they are closed.</p></li>
-    </ol>
+  <section class="wrap sec roles" id="product">
+    <h2>One system for everyone on the inspection.</h2>
+    <p class="intro">Whoever owns the project sets it up and decides who does what. The workflow stays the same whichever side of the contract you're on.</p>
+    <div class="rolegrid">
+      <div><h3>Commissioning agents</h3><p>Run the project for the client: set the stages, witness the tests, raise the snags and report progress.</p></div>
+      <div><h3>Contractors</h3><p>Run your own quality process, invite the witness when work is ready, and see exactly which snags are waiting on you.</p></div>
+      <div><h3>Owners and clients</h3><p>See where every asset stands without waiting for a weekly spreadsheet, and give each party the access it needs.</p></div>
+    </div>
   </section>
 
-  <section class="dark">
-    <div class="wrap">
-      <h2>Built around how inspections run on site.</h2>
-      <div class="points">
-        <div><h3>Your stages and your fields</h3><p>Set up the inspection stages, classifications and outcomes each project uses. Nothing is tied to one discipline or one type of contract.</p></div>
-        <div><h3>Records you can stand behind</h3><p>A published record is locked. A correction is a new record that supersedes the old one, and the history stays.</p></div>
-        <div><h3>Sized for large projects</h3><p>Import assets from Excel and work with tens of thousands of items without the tracker slowing down.</p></div>
-        <div><h3>Access that follows the job</h3><p>Roles are defined per project. The project owner decides who records, who configures and who only views, whichever company they work for.</p></div>
+  <section class="loop" id="how">
+    <div class="wrap sec">
+      <h2>One loop, from the invitation to the close-out.</h2>
+      <ol class="steps">
+        <li><h3>Invite</h3><p>Send an invitation when an item is ready for inspection. The people who need to attend are notified.</p></li>
+        <li><h3>Witness</h3><p>Record the outcome, the progress and the photos on the spot. Unplanned inspections can be recorded without an invitation.</p></li>
+        <li><h3>Track</h3><p>The tracker shows every asset against every stage, so open, failed and upcoming work stays in view.</p></li>
+        <li><h3>Close out</h3><p>Raise snags against what failed, assign them to people or companies, and follow them until they are closed.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="wrap sec" aria-label="Product details">
+    <div class="feature">
+      <div class="copy">
+        <h2>Records that hold up.</h2>
+        <p>An inspection record is evidence, so Deneton treats it that way. Once a record is published it is locked. If something was wrong, a new record supersedes it and the original stays in the history.</p>
+        <ul>
+          <li>Outcome, progress and photos on every record</li>
+          <li>Drafts for anything you need to finish later</li>
+          <li>The author can reopen a record within 30 minutes, and the reopening is logged</li>
+        </ul>
+      </div>
+      <div class="mini" role="img" aria-label="Example published inspection record, locked">
+        <div class="minihead"><div><b>UPS-B-01</b><small>Functional test</small></div><span class="pill red">Failed</span></div>
+        <dl class="fields">
+          <dt>Witnessed by</dt><dd>Commissioning lead</dd>
+          <dt>Attended</dt><dd>Electrical contractor, Client</dd>
+          <dt>Progress</dt><dd>100%</dd>
+          <dt>Photos</dt><dd><span class="thumbs"><i></i><i></i><i></i><i></i></span></dd>
+        </dl>
+        <div class="lockrow"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Published and locked</div>
+        <p class="supersede">The re-test will be a new record. This one stays in the history.</p>
+      </div>
+    </div>
+
+    <div class="feature flip">
+      <div class="copy">
+        <h2>Snags that get closed.</h2>
+        <p>A failed inspection becomes a snag with an owner. Assign it to people, to a company, or both, and everyone involved sees it move. Every change is kept, so nobody has to ask who changed what and when.</p>
+        <ul>
+          <li>Your own snag types, statuses and priorities</li>
+          <li>Each company sees the snags assigned to it</li>
+          <li>Follow any snag and be notified when it changes</li>
+        </ul>
+      </div>
+      <div class="mini" role="img" aria-label="Example snag with its history">
+        <div class="minihead"><div><b>Breaker settings differ from the approved protection study</b><small>Snag on UPS-B-01, functional test</small></div><span class="pill amber">In progress</span></div>
+        <dl class="fields">
+          <dt>Assigned to</dt><dd>Electrical contractor</dd>
+          <dt>Priority</dt><dd>High</dd>
+        </dl>
+        <ol class="hist">
+          <li>Opened from the failed functional test<span>3 days ago</span></li>
+          <li>Assigned to Electrical contractor<span>3 days ago</span></li>
+          <li>Photo added<span>Yesterday</span></li>
+          <li class="now">Status changed from Open to In progress<span>Today</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="copy">
+        <h2>Access you design.</h2>
+        <p>Roles aren't fixed job titles. Each project has its own roles, built from a tree of everything a person can see and do, so the setup matches the contract rather than the software.</p>
+        <ul>
+          <li>Five starting roles, all editable</li>
+          <li>The same person can hold different roles on different projects</li>
+          <li>Buttons for things you can't do simply aren't there</li>
+        </ul>
+      </div>
+      <div class="mini" role="img" aria-label="Example role editor with a tree of permissions">
+        <div class="minihead"><div><b>Contractor QA</b><small>Role on Example project</small></div><span class="pill blue">Editable</span></div>
+        <ul class="tree">
+          <li><label><span class="box y"></span>Inspections</label><ul><li><span><i class="box y"></i>View</span></li><li><span><i class="box y"></i>Record</span></li></ul></li>
+          <li><label><span class="box p"></span>Snags</label><ul><li><span><i class="box y"></i>View</span></li><li><span><i class="box y"></i>Create</span></li><li><span><i class="box y"></i>Change status</span></li><li><span><i class="box"></i>Delete</span></li></ul></li>
+          <li><label><span class="box y"></span>Invitations</label><ul><li><span><i class="box y"></i>View</span></li><li><span><i class="box y"></i>Create</span></li></ul></li>
+          <li><label><span class="box"></span>Project setup</label></li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="wrap close">
+  <section class="wrap sec more">
+    <h2>And the parts you'd expect to work properly.</h2>
+    <div class="moregrid">
+      <div><h3>Excel import</h3><p>Bring in the asset register across several sheets, map the columns once, and re-import later to update assets by tag instead of duplicating them.</p></div>
+      <div><h3>Stage matrix</h3><p>Decide which inspection stages apply to which asset types, and mark the rest as not applicable.</p></div>
+      <div><h3>Your own structure</h3><p>Group assets the way the project does, by building, floor, room or system, in as many levels as you need.</p></div>
+      <div><h3>Saved views and export</h3><p>Filter, sort and arrange columns, save the views you use every day, and export exactly what you see.</p></div>
+      <div><h3>Notifications</h3><p>In-app and email notifications, a daily summary, and a follow button on anything you want to keep an eye on.</p></div>
+      <div><h3>Built for large projects</h3><p>Tested with 50,000 assets on a single project, without the tracker slowing down.</p></div>
+    </div>
+  </section>
+
+  <section class="next" id="next">
+    <div class="wrap sec">
+      <h2>What we're building next.</h2>
+      <div class="nextgrid">
+        <div><h3>Mobile app</h3><p>Record inspections and raise snags from a phone or tablet while you're standing at the equipment.</p></div>
+        <div><h3>Plan against actual</h3><p>Import the programme or set planned dates in Deneton, then compare plan with progress by week or by month.</p></div>
+        <div><h3>Dashboards and reports</h3><p>Snag reports and project dashboards where clicking one chart filters the rest.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark" id="about">
+    <div class="wrap sec about">
+      <div>
+        <h2>Started on site.</h2>
+        <p style="margin-top:22px">Deneton was started in Istanbul in 2026 by a commissioning engineer who tracks inspections on large data centre projects every day, in spreadsheets and in general-purpose tools that were never made for the job.</p>
+        <p>It is built around how inspections actually run: the witness who has ten minutes at the equipment, the contractor who needs to know what's next, and the client who wants a straight answer on where things stand.</p>
+      </div>
+      <div class="name">
+        <div class="word"><svg class="logo" viewBox="-20 -708 3393 740" role="img" aria-label="Deneton"><path fill="#FFFFFF" d="M218 12L218 12Q159 12 115 -17Q71 -46 46 -96Q22 -145 22 -205L22 -205Q22 -265 46 -314Q71 -363 115 -393Q159 -422 218 -422L218 -422Q258 -422 288 -410Q319 -398 338 -381Q357 -364 361 -350L361 -350L361 -688L513 -688L513 0L362 0L362 -66Q353 -48 331 -30Q310 -11 281 0Q252 12 218 12M265 -107L265 -107Q292 -107 314 -120Q336 -132 348 -155Q361 -177 361 -205L361 -205Q361 -233 348 -255Q336 -277 314 -290Q292 -303 265 -303L265 -303Q238 -303 217 -290Q196 -277 183 -255Q171 -233 171 -205L171 -205Q171 -177 183 -155Q196 -132 217 -120Q238 -107 265 -107M989 -173L692 -173Q693 -151 706 -134Q718 -117 740 -107Q763 -97 793 -97L793 -97Q822 -97 845 -103Q869 -109 886 -118Q903 -127 913 -137L913 -137L972 -43Q959 -29 936 -17Q914 -4 877 4Q840 12 783 12L783 12Q715 12 662 -13Q609 -39 579 -88Q548 -138 548 -209L548 -209Q548 -269 574 -318Q601 -366 651 -394Q701 -422 771 -422L771 -422Q838 -422 887 -398Q937 -373 963 -325Q990 -277 990 -205L990 -205Q990 -201 990 -189Q990 -177 989 -173L989 -173M695 -252L847 -252Q847 -268 839 -284Q831 -300 815 -310Q799 -320 774 -320L774 -320Q749 -320 731 -311Q714 -301 705 -285Q696 -270 695 -252L695 -252M1321 -422L1321 -422Q1364 -422 1405 -405Q1446 -387 1473 -350Q1499 -312 1499 -250L1499 -250L1499 0L1347 0L1347 -225Q1347 -269 1326 -292Q1305 -314 1271 -314L1271 -314Q1248 -314 1228 -302Q1209 -290 1196 -269Q1184 -248 1184 -220L1184 -220L1184 0L1032 0L1032 -410L1184 -410L1184 -350Q1190 -366 1209 -383Q1229 -400 1258 -411Q1287 -422 1321 -422M1976 -173L1679 -173Q1680 -151 1693 -134Q1705 -117 1727 -107Q1750 -97 1780 -97L1780 -97Q1809 -97 1832 -103Q1856 -109 1873 -118Q1890 -127 1900 -137L1900 -137L1959 -43Q1946 -29 1923 -17Q1901 -4 1864 4Q1827 12 1770 12L1770 12Q1702 12 1649 -13Q1596 -39 1566 -88Q1535 -138 1535 -209L1535 -209Q1535 -269 1561 -318Q1588 -366 1638 -394Q1688 -422 1758 -422L1758 -422Q1825 -422 1874 -398Q1924 -373 1950 -325Q1977 -277 1977 -205L1977 -205Q1977 -201 1977 -189Q1977 -177 1976 -173L1976 -173M1682 -252L1834 -252Q1834 -268 1826 -284Q1818 -300 1802 -310Q1786 -320 1761 -320L1761 -320Q1736 -320 1718 -311Q1701 -301 1692 -285Q1683 -270 1682 -252L1682 -252M1991 -285L1991 -410L2061 -410L2061 -579L2211 -579L2211 -410L2303 -410L2303 -285L2211 -285L2211 -171Q2211 -145 2219 -130Q2226 -114 2246 -114L2246 -114Q2260 -114 2269 -120Q2279 -126 2281 -128L2281 -128L2333 -20Q2329 -17 2311 -9Q2293 -1 2265 6Q2237 12 2202 12L2202 12Q2141 12 2101 -23Q2061 -57 2061 -130L2061 -130L2061 -285L1991 -285"/><path fill="#3355FF" d="M3128 -422L3128 -422Q3171 -422 3212 -405Q3253 -387 3280 -350Q3306 -312 3306 -250L3306 -250L3306 0L3154 0L3154 -225Q3154 -269 3133 -292Q3112 -314 3078 -314L3078 -314Q3055 -314 3035 -302Q3016 -290 3003 -269Q2991 -248 2991 -220L2991 -220L2991 0L2839 0L2839 -410L2991 -410L2991 -350Q2997 -366 3016 -383Q3036 -400 3065 -411Q3094 -422 3128 -422"/><path fill="none" stroke="#3355FF" stroke-width="74" stroke-linecap="round" stroke-linejoin="round" d="M2476 -364A193 180 0 1 0 2713 -322M2503 -218L2571 -155L2609 -425"/></svg></div>
+        <dl>
+          <dt>denet</dt><dd>From <i>denetim</i>, Turkish for inspection.</dd>
+          <dt>on</dt><dd>The moment a system is switched on and handed over.</dd>
+        </dl>
+        <p>The mark in the logo is both at once: a check inside a power symbol.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap sec close">
     <div>
       <h2>Deneton is in development.</h2>
       <p>It isn't publicly available yet. If you run inspections on a construction or commissioning project and want early access, write to us.</p>
@@ -233,13 +448,21 @@ footer a:hover{color:var(--accent)}
 </main>
 
 <footer>
-  <div class="wrap">
-    <div class="who">
-      <svg viewBox="0 0 160 160" aria-hidden="true"><rect width="160" height="160" rx="36" fill="#3355FF"/><g transform="translate(-504.9 131.27) scale(0.2279)"><path fill="none" stroke="#FFFFFF" stroke-width="74" stroke-linecap="round" stroke-linejoin="round" d="M2476 -364A193 180 0 1 0 2713 -322M2503 -218L2571 -155L2609 -425"/></g></svg>
-      <span>© 2026 Deneton</span>
+  <div class="wrap foot">
+    <div>
+      <svg class="logo" viewBox="-20 -708 3393 740" role="img" aria-label="Deneton"><path fill="#1F1F1F" d="M218 12L218 12Q159 12 115 -17Q71 -46 46 -96Q22 -145 22 -205L22 -205Q22 -265 46 -314Q71 -363 115 -393Q159 -422 218 -422L218 -422Q258 -422 288 -410Q319 -398 338 -381Q357 -364 361 -350L361 -350L361 -688L513 -688L513 0L362 0L362 -66Q353 -48 331 -30Q310 -11 281 0Q252 12 218 12M265 -107L265 -107Q292 -107 314 -120Q336 -132 348 -155Q361 -177 361 -205L361 -205Q361 -233 348 -255Q336 -277 314 -290Q292 -303 265 -303L265 -303Q238 -303 217 -290Q196 -277 183 -255Q171 -233 171 -205L171 -205Q171 -177 183 -155Q196 -132 217 -120Q238 -107 265 -107M989 -173L692 -173Q693 -151 706 -134Q718 -117 740 -107Q763 -97 793 -97L793 -97Q822 -97 845 -103Q869 -109 886 -118Q903 -127 913 -137L913 -137L972 -43Q959 -29 936 -17Q914 -4 877 4Q840 12 783 12L783 12Q715 12 662 -13Q609 -39 579 -88Q548 -138 548 -209L548 -209Q548 -269 574 -318Q601 -366 651 -394Q701 -422 771 -422L771 -422Q838 -422 887 -398Q937 -373 963 -325Q990 -277 990 -205L990 -205Q990 -201 990 -189Q990 -177 989 -173L989 -173M695 -252L847 -252Q847 -268 839 -284Q831 -300 815 -310Q799 -320 774 -320L774 -320Q749 -320 731 -311Q714 -301 705 -285Q696 -270 695 -252L695 -252M1321 -422L1321 -422Q1364 -422 1405 -405Q1446 -387 1473 -350Q1499 -312 1499 -250L1499 -250L1499 0L1347 0L1347 -225Q1347 -269 1326 -292Q1305 -314 1271 -314L1271 -314Q1248 -314 1228 -302Q1209 -290 1196 -269Q1184 -248 1184 -220L1184 -220L1184 0L1032 0L1032 -410L1184 -410L1184 -350Q1190 -366 1209 -383Q1229 -400 1258 -411Q1287 -422 1321 -422M1976 -173L1679 -173Q1680 -151 1693 -134Q1705 -117 1727 -107Q1750 -97 1780 -97L1780 -97Q1809 -97 1832 -103Q1856 -109 1873 -118Q1890 -127 1900 -137L1900 -137L1959 -43Q1946 -29 1923 -17Q1901 -4 1864 4Q1827 12 1770 12L1770 12Q1702 12 1649 -13Q1596 -39 1566 -88Q1535 -138 1535 -209L1535 -209Q1535 -269 1561 -318Q1588 -366 1638 -394Q1688 -422 1758 -422L1758 -422Q1825 -422 1874 -398Q1924 -373 1950 -325Q1977 -277 1977 -205L1977 -205Q1977 -201 1977 -189Q1977 -177 1976 -173L1976 -173M1682 -252L1834 -252Q1834 -268 1826 -284Q1818 -300 1802 -310Q1786 -320 1761 -320L1761 -320Q1736 -320 1718 -311Q1701 -301 1692 -285Q1683 -270 1682 -252L1682 -252M1991 -285L1991 -410L2061 -410L2061 -579L2211 -579L2211 -410L2303 -410L2303 -285L2211 -285L2211 -171Q2211 -145 2219 -130Q2226 -114 2246 -114L2246 -114Q2260 -114 2269 -120Q2279 -126 2281 -128L2281 -128L2333 -20Q2329 -17 2311 -9Q2293 -1 2265 6Q2237 12 2202 12L2202 12Q2141 12 2101 -23Q2061 -57 2061 -130L2061 -130L2061 -285L1991 -285"/><path fill="#3355FF" d="M3128 -422L3128 -422Q3171 -422 3212 -405Q3253 -387 3280 -350Q3306 -312 3306 -250L3306 -250L3306 0L3154 0L3154 -225Q3154 -269 3133 -292Q3112 -314 3078 -314L3078 -314Q3055 -314 3035 -302Q3016 -290 3003 -269Q2991 -248 2991 -220L2991 -220L2991 0L2839 0L2839 -410L2991 -410L2991 -350Q2997 -366 3016 -383Q3036 -400 3065 -411Q3094 -422 3128 -422"/><path fill="none" stroke="#3355FF" stroke-width="74" stroke-linecap="round" stroke-linejoin="round" d="M2476 -364A193 180 0 1 0 2713 -322M2503 -218L2571 -155L2609 -425"/></svg>
+      <p>Inspection management for construction and commissioning teams.</p>
     </div>
-    <a href="mailto:hello@deneton.com">hello@deneton.com</a>
+    <div>
+      <h4>Product</h4>
+      <ul><li><a href="#product">Overview</a></li><li><a href="#how">How it works</a></li><li><a href="#next">What's next</a></li></ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul><li><a href="#about">About</a></li><li><a href="mailto:hello@deneton.com">hello@deneton.com</a></li></ul>
+    </div>
   </div>
+  <div class="wrap legal">© 2026 Deneton. Istanbul, Türkiye.</div>
 </footer>
 
 </body>
